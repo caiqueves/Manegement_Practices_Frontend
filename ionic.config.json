@@ -1,0 +1,7 @@
+{
+  "name": "Push",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
