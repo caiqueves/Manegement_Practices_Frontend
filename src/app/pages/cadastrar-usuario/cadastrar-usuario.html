@@ -9,10 +9,10 @@
   <ion-avatar>
         <img class="circle" [src]="profileImage">
   </ion-avatar>
-  <form #form="ngForm" (ngSubmit)="cadastrarUsuario(form)" novalidate>
+  
     <ion-item>
       <ion-label>usuario</ion-label>
-      <ion-input type="text" requerid [(ngModel)]="usuario.nome" ngControl="nome"></ion-input>
+      <ion-input type="text"  [(ngModel)]="usuario.nome"></ion-input>
     </ion-item>
     
     <ion-item>
@@ -22,12 +22,12 @@
   
     <ion-item>
       <ion-label floating>CPF ou CNPJ</ion-label>
-      <ion-input type="text" [(ngModel)]="usuario.email"></ion-input>
+      <ion-input type="text" [(ngModel)]="usuario.cpfOuCnpj"></ion-input>
     </ion-item>
   
     <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="text" [(ngModel)]="usuario.email"></ion-input>
+      <ion-label floating>Tipo Funcao</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.tipoFuncao"></ion-input>
     </ion-item>
   
     <ion-item>
@@ -36,14 +36,11 @@
     </ion-item>
   
     <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="text" [(ngModel)]="usuario.email"></ion-input>
+      <ion-label floating>Tipo Metodologia</ion-label>
+      <ion-input type="text" [(ngModel)]="usuario.listaTipoMetodologia"></ion-input>
     </ion-item>
   
     <ion-item>
       <button ion-button block (click)="Cadastrar(usuario)" color="primary">Cadastrar </button>
     </ion-item>
-  </form>
-  
-
 </ion-content>

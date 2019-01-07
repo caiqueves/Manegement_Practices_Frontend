@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 let config_key_name = "config";
 
 @Injectable()
-export class ConfiguracaoProvider {
+export class ConfiguracaoService {
 
   public config = {
       showSlide: false,
       email: "",
-      token : ""
+      token : "",
+      id : 0
   }
 
   constructor() {
@@ -21,11 +22,12 @@ export class ConfiguracaoProvider {
   }
 
   // Grava os dados do localstorage
-  setConfigData(showSlide?: boolean, email?: string, token?: string){
+  setConfigData(showSlide?: boolean, email?: string, token?: string, id?: number){
       let config = {
           showSlide: true,
           email: "",
           token: "",
+          id: 0
       };
 
       if(showSlide){
@@ -39,6 +41,11 @@ export class ConfiguracaoProvider {
       if(token){
         config.token = token;
       }
+
+      if(id){
+        config.id = id;
+      }
+
 
       localStorage.setItem(config_key_name, JSON.stringify(config));
   } 

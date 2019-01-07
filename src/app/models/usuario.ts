@@ -1,10 +1,8 @@
 export interface Usuario {
-    
-    cpfOuCnpj : string,
-    nome      : string,
-    email     : string,
-    senha     : string,
-    profissao : string,
-    token     : string,
-    uid       : string,
+    nome       : string,
+    email      : string,
+    cpfOuCnpj  : string,
+    tipoFuncao : number
+    senha      : string,
+    listaTipoMetodologia  : Number[],
 }
