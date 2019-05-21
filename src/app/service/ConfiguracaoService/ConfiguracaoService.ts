@@ -45,8 +45,7 @@ export class ConfiguracaoService {
       if(id){
         config.id = id;
       }
-
-
+      
       localStorage.setItem(config_key_name, JSON.stringify(config));
   } 
 }

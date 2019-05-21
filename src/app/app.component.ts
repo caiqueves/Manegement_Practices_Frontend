@@ -41,7 +41,7 @@ export class MyApp {
                 ];
                 
                 platform.ready().then(() => {
-                      let config =    configuracacaoService.getConfigData();
+                      let config =  configuracacaoService.getConfigData();
                       if(config == null){
                           this.rootPage = IntroducaoPage;
                           configuracacaoService.setConfigData(false);
@@ -62,6 +62,7 @@ export class MyApp {
   logout() {
     this.nav.setRoot(LoginPage);
   }
+
 
 }
 

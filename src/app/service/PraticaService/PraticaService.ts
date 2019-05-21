@@ -1,14 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable } from  '@angular/core';
 import { Pratica } from '../../models/pratica';
 import { Observable } from 'rxjs';
 import { MANEGEMENT_API } from '../../app.api';
-/*
-  Generated class for the UsuarioProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+
 @Injectable()
 export class PraticaService {
  

@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Usuario } from '../../models/usuario';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { ToastController } from 'ionic-angular';
+import { SegurancaService } from '../../service/segurancaService/segurancaService';
 
 /**
  * Generated class for the EsqueciSenhaPage page.
@@ -23,41 +23,26 @@ export class EsqueciSenhaPage {
   actionCodeSettings;
   email = String;
   
-  constructor(private afAuth: AngularFireAuth,
-    public navCtrl: NavController,
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public segurancaservice: SegurancaService ) {
 
     this.profileImage = 'assets/imgs/img_logo_header.gif';
-    
   }
 
-  MudarSenha(usuario: Usuario) {
+  esqueciSenha(usuario: Usuario) {
+    
     if (usuario.email != null) {
-      this.afAuth.auth.sendPasswordResetEmail(this.usuario.email).then(() => {
-
-        alert("Por favor, verifique o seu e-mail.Para seguir com a mudança da senha");
-
-      }).catch(function (error) {
-
-        var errorCode = error.code;
-        var errorMessage = error.message;
-
-        if (errorCode == 'auth/user-not-found') {
-          alert("Não há registro de usuário correspondente a esse email. O usuário pode ter sido excluído.");
-
-        } else if (errorCode == 'auth/invalid-email') {
-          alert("O email está no formato inválido");
-        } else if (error.L.error.code == 'auth/argument-error') {
-          alert("O primeiro argumento email deve ser uma string válida.")
-        } else {
-
-          alert(errorMessage);
-        }
+      this.segurancaservice.esqueciSenha(this.usuario.email).subscribe(response => {
+        alert(response.message);
+      }, 
+      response => {
+        alert(response.error.message); 
       });
     } else {
       alert('Por favor, preencha o campo de Email.')
-    }
+    }  
   }
 }

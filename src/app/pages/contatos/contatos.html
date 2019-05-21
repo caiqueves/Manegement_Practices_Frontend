@@ -15,18 +15,19 @@
 
 
 <ion-content padding>
-  <ion-item>
-    <ion-label floating>Nome</ion-label>
-    <ion-input type="text" ></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Mensagem</ion-label>
-    <ion-input type="text" ></ion-input>
-  </ion-item>
-
- 
-  <button ion-button block  color="primary">Enviar Mensagem</button>
-
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-start>
+          <img class="circle" [src]="profileImage">
+        </ion-avatar>
+      </ion-item>
+      <ion-item>
+      <strong> <b> <h2>FALE CONOSCO</h2></b> </strong>
+      </ion-item>
+      <ion-card-content>
+        <p>Caso deseje falar conosco pedimos que nós envie um email : <b>manegementpractices@gmail.com</b> 
+        </p>
+      </ion-card-content>
+    </ion-card>
 </ion-content>
 

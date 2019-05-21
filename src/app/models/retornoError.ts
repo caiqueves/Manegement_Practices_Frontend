@@ -1,3 +1,9 @@
 export interface RetornoError {
-  message : string
+  timestamp : string,
+  status : string,
+ 
+  error : string,
+  message : string,
+  path : string
+  
 }

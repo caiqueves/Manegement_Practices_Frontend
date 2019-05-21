@@ -3,51 +3,61 @@ import { ErrorHandler } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpModule } from '../../node_modules/@angular/http';
 import { NgModule} from '@angular/core';
 import { MyApp } from './app.component';
 
 import { LoginPage } from '../app/pages/login/login';
-import { IntroducaoPageModule } from '../app/pages/introducao/introducao.module';
 import { SobrePage } from '../app/pages/sobre/sobre';
 import { PerfilPage } from '../app/pages/perfil/perfil';
-import { EsqueciSenhaPageModule } from '../app/pages/esqueci-senha/esqueci-senha.module';
-import { CadastrarUsuarioPageModule } from '../app/pages/cadastrar-usuario/cadastrar-usuario.module';
 import { ContatosPage } from '../app/pages/contatos/contatos';
 import { ConfiguracoesPage } from '../app/pages/configuracoes/configuracoes';
-import { Push } from '@ionic-native/push';
-import { Camera } from '@ionic-native/camera';
+import { IntroducaoPage } from './pages/introducao/introducao';
+import { EsqueciSenhaPage } from './pages/esqueci-senha/esqueci-senha';
+import { CadastrarUsuarioPage } from './pages/cadastrar-usuario/cadastrar-usuario';
 
 import { UsuarioService } from './service/usuarioService/usuarioService';
 import { TipoMetodologiaService } from './service/TipoMetodologiaService/TipoMetodologiaService';
+import { PraticaService } from './service/PraticaService/PraticaService';
+import { ConfiguracaoService } from './service/configuracaoService/configuracaoService';
+import { SegurancaService } from './service/segurancaService/segurancaService';
+
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { FormsModule} from '@angular/forms';
+import { Push } from '@ionic-native/push';
+import { Camera } from '@ionic-native/camera';
+import { AuthInterceptor } from './pages/login/auth.interceptor';
+
 
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage,
-    SobrePage,
-    PerfilPage,
+    ConfiguracoesPage,
     ContatosPage,
-    ConfiguracoesPage
+    LoginPage,
+    PerfilPage,
+    SobrePage,
+    IntroducaoPage,
+    EsqueciSenhaPage,
+    CadastrarUsuarioPage
   ],
   imports: [
-    BrowserModule,
-    
     IonicModule.forRoot(MyApp),
-    IntroducaoPageModule,
-    HttpModule,
-    EsqueciSenhaPageModule,
-    CadastrarUsuarioPageModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
 
   entryComponents: [
     MyApp,
-    LoginPage,
-    SobrePage,
-    PerfilPage,
+    ConfiguracoesPage,
     ContatosPage,
-    ConfiguracoesPage
+    LoginPage,
+    PerfilPage,
+    SobrePage,
+    IntroducaoPage,
+    EsqueciSenhaPage,
+    CadastrarUsuarioPage
   ],
   providers: [
     StatusBar,
@@ -55,8 +65,12 @@ import { TipoMetodologiaService } from './service/TipoMetodologiaService/TipoMet
     Push,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SegurancaService,
+    ConfiguracaoService,
+    PraticaService,
+    TipoMetodologiaService,
     UsuarioService,
-    TipoMetodologiaService
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })
 export class AppModule {}

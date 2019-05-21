@@ -27,6 +27,7 @@ export class TipoMetodologiaService {
   
   listar(): Observable<TipoMetodologia[]> {
     return this.http.get<TipoMetodologia[]>(`${MANEGEMENT_API}/tipoMetodologia/`)
+    
 }
 
   editar(id : string, descricao: string ) : Observable<any> {

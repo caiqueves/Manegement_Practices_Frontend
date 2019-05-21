@@ -87,8 +87,7 @@
         <variable name="FCM_VERSION" value="11.6.2" />
     </plugin>
     <platform name="android">
-        <!--<resource-file src="google-services.json" target="app/google-services.json" />-->
     </platform>
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
-    <engine name="android" spec="7.1.2" />
+    <engine name="android" spec="7.1.4" />
 </widget>

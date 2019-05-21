@@ -15,11 +15,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ContatosPage {
 
+  profileImage;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ContatosPage');
+    if (this.profileImage == null) {
+      this.profileImage = 'assets/imgs/avatar-blank.png';
+    }
   }
-
 }

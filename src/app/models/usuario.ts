@@ -1,8 +1,8 @@
 export interface Usuario {
-    nome       : string,
-    email      : string,
-    cpfOuCnpj  : string,
-    tipoFuncao : number
-    senha      : string,
-    listaTipoMetodologia  : Number[],
+    id           : number,
+    nome         : string,
+    email        : string,
+    tipoFuncao   : number
+    senha        : string,
+    tipoMetodologia  : number
 }

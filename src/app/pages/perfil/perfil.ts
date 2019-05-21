@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ConfiguracaoProvider } from '../../providers/configuracao/configuracao';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Camera } from '@ionic-native/camera';
 import { Usuario } from '../../models/usuario';
+import { UsuarioService } from '../../service/usuarioService/usuarioService';
+import { TipoMetodologia } from '../../models/tipoMetodologia';
+import { TipoMetodologiaService } from '../../service/TipoMetodologiaService/TipoMetodologiaService';
 
-/**
- * Generated class for the PerfilPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,23 +14,59 @@ import { Usuario } from '../../models/usuario';
 })
 export class PerfilPage {
 
-  profileImage;
   usuario = {} as Usuario;
+  profileImage;
+  
+  listafuncoes: any[];
+  listaMetodologias: TipoMetodologia[];
+
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public configuracacaoProvider: ConfiguracaoProvider,
-    public camera: Camera) {
-
+    public camera: Camera,
+    public toastCtrl: ToastController,
+    private usuarioService: UsuarioService,
+    private tipoMetodologiaService: TipoMetodologiaService) {
 
     if (this.profileImage == null) {
       this.profileImage = 'assets/imgs/avatar-blank.png';
     }
     else {
-      this.profileImage = ''; // Carregar Imagem do Storage do Firebase
+      this.profileImage = ''; 
     }
-  }
 
+    this.listafuncoes =  [
+      { text: 'Gerente', id: 1 },
+      { text: 'Analista', id: 2 },
+      { text: 'Programador',id: 3 }
+    ];
+
+    this.tipoMetodologiaService.listar().subscribe(
+      retorno => {
+        this.listaMetodologias = retorno;
+      },
+      error => {
+        
+        const toast = this.toastCtrl.create({
+          message: error.error.message.toString(),
+          duration: 3000
+        });
+        toast.present();
+      });
+    
+  this.usuarioService.buscarUsuario(localStorage.getItem('IdUsuario'))
+  .subscribe(
+    dat => {
+        this.usuario.id = dat.id;
+        this.usuario.nome = dat.nome;
+        this.usuario.email = dat.email;
+        this.usuario.tipoFuncao = dat.tipoFuncao;
+
+        //this.usuario.tipoMetodologia = dat.tipoMetodologia.id;   
+  })  
+}
+   
+/*
   TirarFoto() {
     const options: CameraOptions = {
       quality: 100,
@@ -56,14 +88,17 @@ export class PerfilPage {
       })
       .catch((error) => {
         console.error(error);
-      })
+      })     
+  }
+  */
+
+
+  Editar(usuario : Usuario) {
+     
+
   }
 
-  Editar(usuario) {
-
-  }
-
-  Salvar(usuario){
+  Salvar(usuario : Usuario){
 
   }
 }

@@ -15,35 +15,39 @@
 
 
 <ion-content padding>
-  <ion-card>
-    <ion-avatar>
-      <img class="circle" src="{{ profileImage }}" />
-    </ion-avatar>
-    <button ion-button block (click)="TirarFoto()">Camera</button>
-  </ion-card>
- 
-  <ion-card>
-    <ion-item>
-       <ion-label floating>CPF/CNPJ</ion-label>
-       <ion-input class="text"  [(ngModel)]="usuario.cpfOuCnpj"></ion-input> 
-    </ion-item>
-    <ion-item>
-       <ion-label floating>Name</ion-label>
-       <ion-input class="text"  [(ngModel)]="usuario.name"></ion-input> 
-    </ion-item>
-    <ion-item>
-       <ion-label floating>E-Mail</ion-label>
-       <ion-input class="text"  [(ngModel)]="usuario.email"></ion-input>  
-    </ion-item>
-    <ion-item>
-       <ion-label floating>Profissão</ion-label>
-       <ion-input class="text"  [(ngModel)]="usuario.profissao"></ion-input>  
-    </ion-item>    
   
-    <ion-item class="footer">
-      <button ion-button block (click)="Editar(usuario)">Editar</button>
-      <button ion-button block (click)="Salvar(usuario)">Salvar</button>
+    <ion-avatar>
+      <img class="circle" [src]="profileImage" >
+    </ion-avatar>
+  
+    <ion-item>
+       <ion-label floating>Nome:  </ion-label>
+       <ion-input type="text" [(ngModel)]="usuario.nome"></ion-input> 
+    </ion-item>
+    <ion-item>
+       <ion-label floating>E-Mail </ion-label>
+       <ion-input type="text" [(ngModel)]="usuario.email"></ion-input>  
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Função</ion-label>
+      <ion-select id="dpfuncao" [(ngModel)]="usuario.tipoFuncao" okText="Ok" cancelText="Cancelar">
+        <ion-option *ngFor="let funcoes of listafuncoes" value="{{funcoes.id}}">{{funcoes.text}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Tipo Metodologia</ion-label>
+      <ion-select  [(ngModel)]="usuario.tipoMetodologia" okText="Ok" cancelText="Cancelar">
+        <ion-option *ngFor="let metodologia of listaMetodologias" 
+        value="{{metodologia.id}}" >{{metodologia.descricao}}</ion-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input type="password" [(ngModel)]="usuario.senha"></ion-input>
     </ion-item>
 
-  </ion-card>
+    <ion-item class="footer">
+      <button ion-button block (click)="Salvar(usuario)">Salvar</button>
+    </ion-item>
 </ion-content>

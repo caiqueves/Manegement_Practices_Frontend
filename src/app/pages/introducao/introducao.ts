@@ -17,13 +17,13 @@ import { LoginPage } from '../login/login';
 
 export class IntroducaoPage {
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {   }
+  constructor(private nav: NavController, public navParams: NavParams) {   }
 
   ionViewDidLoad() {
    console.log('ionViewDidLoad IntroducaoPage');
   }
    
   goToTabsPage() {
-    this.navCtrl.push(LoginPage);
+    this.nav.push(LoginPage);
   }
 }

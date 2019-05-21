@@ -1,5 +1,5 @@
 export interface Pratica {
     
-    id   : string,
+    id   : number,
     descricao : string
 }

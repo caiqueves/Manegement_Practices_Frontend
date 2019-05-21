@@ -1,5 +1,5 @@
 export interface TipoMetodologia {
     
-    id   : string,
+    id   : number,
     descricao : string
 }
