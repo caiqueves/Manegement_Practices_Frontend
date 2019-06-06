@@ -1,5 +1,8 @@
 export interface Pratica {
     
     id   : number,
-    descricao : string
+    etapa : string,
+    problema : string,
+    solucao : string,
+    fonte : string
 }

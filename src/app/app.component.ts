@@ -1,25 +1,21 @@
 import { Component, ViewChild } from '@angular/core';
 
-import {Platform, Nav, MenuController} from 'ionic-angular';
+import {Platform, Nav} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { ConfiguracoesPage } from '../app/pages/configuracoes/configuracoes';
 import { IntroducaoPage } from '../app/pages/introducao/introducao';
 import { LoginPage } from '../app/pages/login/login';
 import { PerfilPage } from '../app/pages/perfil/perfil';
-import { ConfiguracoesPage } from '../app/pages/configuracoes/configuracoes';
 import { SobrePage } from '../app/pages/sobre/sobre';
 import { ContatosPage } from '../app/pages/contatos/contatos';
 
 import { ConfiguracaoService } from './service/configuracaoService/configuracaoService';
-import { UsuarioService } from './service/usuarioService/usuarioService';
+
 
 @Component({
   templateUrl: 'app.html',
-  providers: [
-    ConfiguracaoService,
-    UsuarioService
-  ]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -29,9 +25,7 @@ export class MyApp {
   constructor(platform: Platform,
               statusBar: StatusBar, 
               splashScreen: SplashScreen,
-              configuracacaoService: ConfiguracaoService,
-              menuController: MenuController,
-              usuarioProvider: UsuarioService ) {
+              configuracacaoService: ConfiguracaoService) {
                 
                 this.pages = [
                   { title: 'Perfil', component: PerfilPage },

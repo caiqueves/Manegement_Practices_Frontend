@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { Camera } from '@ionic-native/camera';
 import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../service/usuarioService/usuarioService';
 import { TipoMetodologia } from '../../models/tipoMetodologia';
@@ -19,11 +18,11 @@ export class PerfilPage {
   
   listafuncoes: any[];
   listaMetodologias: TipoMetodologia[];
-
-
+  tipoMetodologia: TipoMetodologia;
+  id_metodologia : number;
+    
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public camera: Camera,
     public toastCtrl: ToastController,
     private usuarioService: UsuarioService,
     private tipoMetodologiaService: TipoMetodologiaService) {
@@ -60,9 +59,10 @@ export class PerfilPage {
         this.usuario.id = dat.id;
         this.usuario.nome = dat.nome;
         this.usuario.email = dat.email;
-        this.usuario.tipoFuncao = dat.tipoFuncao;
-
-        //this.usuario.tipoMetodologia = dat.tipoMetodologia.id;   
+        this.usuario.tipoFuncao = dat.tipoFuncao; 
+        this.tipoMetodologia = dat.TipoMetodologia; 
+        this.id_metodologia = this.tipoMetodologia.id;   
+        console.log(this.id_metodologia);
   })  
 }
    

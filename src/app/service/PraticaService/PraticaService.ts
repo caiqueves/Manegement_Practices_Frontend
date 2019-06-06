@@ -12,7 +12,7 @@ export class PraticaService {
 
   constructor(private http: HttpClient) {
   }
-  
+
   salvar(descricao:string) : Observable<any> {
     return this.http.post(`${MANEGEMENT_API}/pratica/`, { descricao: descricao})
   }
@@ -31,5 +31,9 @@ export class PraticaService {
 
   excluir(id : string) {
     return this.http.delete(`${MANEGEMENT_API}/pratica/${id}`)
+  }
+
+  buscarPraticaUsuario(idUsuario : string) {
+    return this.http.get<Pratica>(`${MANEGEMENT_API}/pratica/findTipoMetodologia/${idUsuario}`)
   }
 }

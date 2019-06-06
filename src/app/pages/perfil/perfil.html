@@ -37,8 +37,8 @@
     <ion-item>
       <ion-label floating>Tipo Metodologia</ion-label>
       <ion-select  [(ngModel)]="usuario.tipoMetodologia" okText="Ok" cancelText="Cancelar">
-        <ion-option *ngFor="let metodologia of listaMetodologias" 
-        value="{{metodologia.id}}" >{{metodologia.descricao}}</ion-option>
+        <ion-option *ngFor="let metodologia of listaMetodologias let idx=index"  value="{{metodologia.id}}" 
+        selected="{{(idx == id_metodologia).toString()}}">{{metodologia.descricao}}</ion-option>
       </ion-select>
     </ion-item>
     

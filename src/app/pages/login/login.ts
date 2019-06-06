@@ -37,14 +37,6 @@ export class LoginPage {
     
     if (usuario.email != null && usuario.senha != null) {
       
-      /*
-      this.usuarioservice.buscarPorEmail("caique.sire@gmail.com").subscribe( emailresultado => {
-        console.log(emailresultado);
-         //localStorage.setItem("IdUsuario", emailresultado.id);
-      });
-      */
-
-      
       this.segurancaservice.login(usuario.email, usuario.senha).subscribe(
       response =>  {
   

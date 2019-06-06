@@ -59,13 +59,11 @@ export class CadastrarUsuarioPage {
   }
 
   Cadastrar(usuario : Usuario) {
-    if (usuario != null) {
-     console.log(usuario.tipoFuncao);
+    if (usuario.nome != null && usuario.email != null && usuario.tipoFuncao != null && usuario.senha != null && usuario.tipoMetodologia != null) {
       this.usuarioService.salvar(usuario.nome,usuario.email,usuario.tipoFuncao,usuario.senha,usuario.tipoMetodologia)
        .subscribe (
          retorno => {
            this.retornoS = retorno;
-           
 
            const toast = this.toastCtrl.create({
             message: this.retornoS.message.toString(),

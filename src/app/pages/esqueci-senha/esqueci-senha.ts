@@ -36,13 +36,25 @@ export class EsqueciSenhaPage {
     
     if (usuario.email != null) {
       this.segurancaservice.esqueciSenha(this.usuario.email).subscribe(response => {
-        alert(response.message);
+        const toast = this.toastCtrl.create({
+          message: response.message.toString(),
+          duration: 3000
+        });
+        toast.present();
       }, 
       response => {
-        alert(response.error.message); 
+        const toast = this.toastCtrl.create({
+          message: response.error.message.toString(),
+          duration: 3000
+        });
+        toast.present();
       });
     } else {
-      alert('Por favor, preencha o campo de Email.')
+        const toast = this.toastCtrl.create({
+          message: 'Por favor, preencha o campo de Email.',
+          duration: 3000
+        });
+        toast.present();
     }  
   }
 }

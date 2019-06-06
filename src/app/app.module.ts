@@ -10,10 +10,10 @@ import { LoginPage } from '../app/pages/login/login';
 import { SobrePage } from '../app/pages/sobre/sobre';
 import { PerfilPage } from '../app/pages/perfil/perfil';
 import { ContatosPage } from '../app/pages/contatos/contatos';
-import { ConfiguracoesPage } from '../app/pages/configuracoes/configuracoes';
 import { IntroducaoPage } from './pages/introducao/introducao';
 import { EsqueciSenhaPage } from './pages/esqueci-senha/esqueci-senha';
 import { CadastrarUsuarioPage } from './pages/cadastrar-usuario/cadastrar-usuario';
+import { ConfiguracoesPage } from './pages/configuracoes/configuracoes';
 
 import { UsuarioService } from './service/usuarioService/usuarioService';
 import { TipoMetodologiaService } from './service/TipoMetodologiaService/TipoMetodologiaService';
@@ -23,10 +23,8 @@ import { SegurancaService } from './service/segurancaService/segurancaService';
 
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
-import { Push } from '@ionic-native/push';
-import { Camera } from '@ionic-native/camera';
 import { AuthInterceptor } from './pages/login/auth.interceptor';
-
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -62,15 +60,14 @@ import { AuthInterceptor } from './pages/login/auth.interceptor';
   providers: [
     StatusBar,
     SplashScreen,
-    Push,
-    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SegurancaService,
     ConfiguracaoService,
     PraticaService,
     TipoMetodologiaService,
     UsuarioService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    LocalNotifications
   ]
 })
 export class AppModule {}
