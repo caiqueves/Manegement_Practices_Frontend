@@ -4,6 +4,7 @@ import { Usuario } from '../../models/usuario';
 import { UsuarioService } from '../../service/usuarioService/usuarioService';
 import { TipoMetodologia } from '../../models/tipoMetodologia';
 import { TipoMetodologiaService } from '../../service/TipoMetodologiaService/TipoMetodologiaService';
+import { LoginPage } from '../login/login';
 
 
 @IonicPage()
@@ -18,9 +19,12 @@ export class PerfilPage {
   
   listafuncoes: any[];
   listaMetodologias: TipoMetodologia[];
-  tipoMetodologia: TipoMetodologia;
-  id_metodologia : number;
-    
+  tipoMetodologia = {} as TipoMetodologia;
+
+  idFuncao :any;
+  idMetodologia :any;  
+  nav: any;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public toastCtrl: ToastController,
@@ -35,9 +39,9 @@ export class PerfilPage {
     }
 
     this.listafuncoes =  [
-      { text: 'Gerente', id: 1 },
-      { text: 'Analista', id: 2 },
-      { text: 'Programador',id: 3 }
+      { descricao: 'GERENTE', a: 1 },
+      { descricao: 'ANALISTA', a: 2 },
+      { descricao: 'PROGRAMADOR',a: 3 }
     ];
 
     this.tipoMetodologiaService.listar().subscribe(
@@ -59,10 +63,22 @@ export class PerfilPage {
         this.usuario.id = dat.id;
         this.usuario.nome = dat.nome;
         this.usuario.email = dat.email;
-        this.usuario.tipoFuncao = dat.tipoFuncao; 
+
+        /*
+        if (dat.tipoFuncao = 'Gerente' )
+          this.usuario.tipoFuncao = 1; 
+        else if (dat.tipoFuncao = 'Analista' ) {
+          this.usuario.tipoFuncao = 2;
+        }
+        else if (dat.tipoFuncao = 'Programador' ) {
+          this.usuario.tipoFuncao = 3;
+        }
+
         this.tipoMetodologia = dat.TipoMetodologia; 
-        this.id_metodologia = this.tipoMetodologia.id;   
-        console.log(this.id_metodologia);
+        this.usuario.tipoMetodologia = this.tipoMetodologia.id;  
+        */
+
+        this.usuario.senha = dat.senha;   
   })  
 }
    
@@ -92,14 +108,51 @@ export class PerfilPage {
   }
   */
 
+ 
+  Editar(usuario : Usuario){
 
-  Editar(usuario : Usuario) {
-     
+    var id_ = Number.parseInt(localStorage.getItem('IdUsuario'));
+    console.log(usuario.senha)
+    var senha = usuario.senha == "" ? this.usuario.senha : usuario.senha;
 
+    console.log(usuario.senha)
+   this.usuarioService.editar(id_,usuario.nome,usuario.email, usuario.tipoFuncao, senha,usuario.tipoMetodologia).subscribe (
+     retorno => {
+      const toast = this.toastCtrl.create({
+        message: retorno.message,
+        duration: 3000
+      });
+      toast.present();
+
+     }, error => {
+      const toast = this.toastCtrl.create({
+        message: error.error.message,
+        duration: 3000
+      });
+      toast.present();
+     });
   }
 
-  Salvar(usuario : Usuario){
+  Excluir() {
+    this.usuarioService.excluir( localStorage.getItem('IdUsuario')).subscribe (
+      retorno => {
+       const toast = this.toastCtrl.create({
+         message: "Usuário excluído com sucesso !",
+         duration: 3000
+       });
+       toast.present();
 
+       this.navCtrl.setRoot(LoginPage);
+       localStorage.removeItem("X-PUSH-AUTH")
+       localStorage.removeItem('IdUsuario');
+ 
+      }, error => {
+       const toast = this.toastCtrl.create({
+         message: error.error.message,
+         duration: 3000
+       });
+       toast.present();
+      });
   }
 }
 

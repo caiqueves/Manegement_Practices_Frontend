@@ -51,7 +51,7 @@ export class CadastrarUsuarioPage {
         },
         error => {
            const toast = this.toastCtrl.create({
-            message: error.error.message.toString(),
+            message: error.message.toString(),
             duration: 3000
           });
           toast.present();

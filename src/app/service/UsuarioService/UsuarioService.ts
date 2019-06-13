@@ -10,6 +10,7 @@ export class UsuarioService {
   constructor(private http: HttpClient) {
   }
   
+
   salvar(nome: string, email:string, tipoFuncao: number, senha: string, tipoMetodologia : number ) : Observable<any> {
     return this.http.post(`${MANEGEMENT_API}/usuario/`, { nome: nome, email: email, idTipoFuncao: tipoFuncao, senha: senha, 
       idTipoMetodologia: tipoMetodologia})
@@ -25,14 +26,14 @@ export class UsuarioService {
 
   listar(): Observable<any[]> {
     return this.http.get<any[]>(`${MANEGEMENT_API}/usuario/`)
-}
+  }  
 
-  editar(id : string,name: string, email:string, tipoFuncao: Number, senha: string, tipoMetodologia : Number ) : Observable<any> {
+  editar(id : number,name: string, email:string, tipoFuncao: Number, senha: string, tipoMetodologia : Number ) : Observable<any> {
     return this.http.put(`${MANEGEMENT_API}/usuario/${id}`,{ nome: name, email: email,idTipoFuncao: tipoFuncao, senha: senha, 
       idTipoMetodologia: tipoMetodologia})
   }
 
   excluir(id : string) {
-    return this.http.delete(`${MANEGEMENT_API}/usuario/${id}`)
+    return this.http.delete(`${MANEGEMENT_API}/usuario/${id}`) 
   }
 }

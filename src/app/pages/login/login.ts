@@ -45,6 +45,7 @@ export class LoginPage {
         this.usuarioservice.selecionarEmail(usuario.email)
         .subscribe(
                 dat => { 
+                        localStorage.removeItem('IdUsuario');
                         localStorage.setItem("IdUsuario",dat.id);
                        }
         );
@@ -61,7 +62,7 @@ export class LoginPage {
       }, error => {
            const toast = this.toastCtrl.create
            ({
-            message: error.error.message,
+            message: "Não foi possível efetuar o login.Por favor verifique seu e-mail e senha.",
             duration: 3000
           });
           toast.present()

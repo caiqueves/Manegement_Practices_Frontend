@@ -1,9 +1,3 @@
-<!--
-  Generated template for the PerfilPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -21,24 +15,26 @@
     </ion-avatar>
   
     <ion-item>
-       <ion-label floating>Nome:  </ion-label>
+       <ion-label floating>Nome </ion-label>
        <ion-input type="text" [(ngModel)]="usuario.nome"></ion-input> 
     </ion-item>
+
     <ion-item>
        <ion-label floating>E-Mail </ion-label>
        <ion-input type="text" [(ngModel)]="usuario.email"></ion-input>  
     </ion-item>
+
     <ion-item>
-      <ion-label floating>Função</ion-label>
+      <ion-label floating>Função </ion-label>
       <ion-select id="dpfuncao" [(ngModel)]="usuario.tipoFuncao" okText="Ok" cancelText="Cancelar">
-        <ion-option *ngFor="let funcoes of listafuncoes" value="{{funcoes.id}}">{{funcoes.text}}</ion-option>
+        <ion-option *ngFor="let funcoes of listafuncoes; let i = index" selected="{{(i==0).toString()}}" value="{{funcoes.a}}">{{funcoes.descricao}}</ion-option>
       </ion-select>
     </ion-item>
+
     <ion-item>
-      <ion-label floating>Tipo Metodologia</ion-label>
+      <ion-label floating>Tipo Metodologia </ion-label>
       <ion-select  [(ngModel)]="usuario.tipoMetodologia" okText="Ok" cancelText="Cancelar">
-        <ion-option *ngFor="let metodologia of listaMetodologias let idx=index"  value="{{metodologia.id}}" 
-        selected="{{(idx == id_metodologia).toString()}}">{{metodologia.descricao}}</ion-option>
+        <ion-option *ngFor="let metodologia of listaMetodologias; let i = index" selected="{{(i==1).toString()}}"  value="{{metodologia.id}}">{{metodologia.descricao}}</ion-option>
       </ion-select>
     </ion-item>
     
@@ -48,6 +44,12 @@
     </ion-item>
 
     <ion-item class="footer">
-      <button ion-button block (click)="Salvar(usuario)">Salvar</button>
+      <button ion-button block (click)="Editar(usuario)">Editar</button>
     </ion-item>
+
+    <ion-item class="footer">
+      <h5>Caso deseje excluir a sua conta, clique abaixo: </h5>
+      <button ion-button block (click)="Excluir()">Excluir</button>
+    </ion-item>
+
 </ion-content>
