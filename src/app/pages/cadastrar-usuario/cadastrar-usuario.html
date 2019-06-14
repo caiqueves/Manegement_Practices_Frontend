@@ -7,7 +7,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
    <ion-avatar>
         <img class="circle" [src]="profileImage">
    </ion-avatar>
@@ -43,9 +43,7 @@
       <ion-input type="password" [(ngModel)]="usuario.senha"></ion-input>
     </ion-item>
   
-    <ion-item>
-      <button ion-button block (click)="Cadastrar(usuario)" color="primary">Cadastrar </button>
-    </ion-item>
+    <button ion-button block (click)="Cadastrar(usuario)" color="primary">Cadastrar </button>
 
 </ion-content>
 

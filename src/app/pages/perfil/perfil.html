@@ -8,7 +8,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   
     <ion-avatar>
       <img class="circle" [src]="profileImage" >
@@ -27,14 +27,14 @@
     <ion-item>
       <ion-label floating>Função </ion-label>
       <ion-select id="dpfuncao" [(ngModel)]="usuario.tipoFuncao" okText="Ok" cancelText="Cancelar">
-        <ion-option *ngFor="let funcoes of listafuncoes; let i = index" selected="{{(i==0).toString()}}" value="{{funcoes.a}}">{{funcoes.descricao}}</ion-option>
+        <ion-option *ngFor="let funcoes of listafuncoes; let i = index" selected="{{(i==usuario.tipoFuncao).toString()}}" value="{{funcoes.a}}">{{funcoes.descricao}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Tipo Metodologia </ion-label>
       <ion-select  [(ngModel)]="usuario.tipoMetodologia" okText="Ok" cancelText="Cancelar">
-        <ion-option *ngFor="let metodologia of listaMetodologias; let i = index" selected="{{(i==1).toString()}}"  value="{{metodologia.id}}">{{metodologia.descricao}}</ion-option>
+        <ion-option *ngFor="let metodologia of listaMetodologias; let i = index" selected="{{(i==usuario.tipoMetodologia).toString()}}"  value="{{metodologia.id}}">{{metodologia.descricao}}</ion-option>
       </ion-select>
     </ion-item>
     
@@ -42,14 +42,11 @@
       <ion-label floating>Senha</ion-label>
       <ion-input type="password" [(ngModel)]="usuario.senha"></ion-input>
     </ion-item>
+    
+    <button ion-button block (click)="Editar(usuario)">Editar</button>
 
-    <ion-item class="footer">
-      <button ion-button block (click)="Editar(usuario)">Editar</button>
+    <ion-item>
+        <h5>Caso deseje excluir a sua conta, clique abaixo: </h5>
+        <a (click)="Excluir()">Excluir Conta</a>
     </ion-item>
-
-    <ion-item class="footer">
-      <h5>Caso deseje excluir a sua conta, clique abaixo: </h5>
-      <button ion-button block (click)="Excluir()">Excluir</button>
-    </ion-item>
-
 </ion-content>

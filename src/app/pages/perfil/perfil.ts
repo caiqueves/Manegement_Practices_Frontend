@@ -63,20 +63,19 @@ export class PerfilPage {
         this.usuario.id = dat.id;
         this.usuario.nome = dat.nome;
         this.usuario.email = dat.email;
-
-        /*
-        if (dat.tipoFuncao = 'Gerente' )
+        
+        if (dat.tipoFuncao == 'GERENTE' )
           this.usuario.tipoFuncao = 1; 
-        else if (dat.tipoFuncao = 'Analista' ) {
+          
+        else if (dat.tipoFuncao == 'ANALISTA' ) {
           this.usuario.tipoFuncao = 2;
         }
-        else if (dat.tipoFuncao = 'Programador' ) {
+        else if (dat.tipoFuncao == 'PROGRAMADOR' ) {
           this.usuario.tipoFuncao = 3;
         }
 
-        this.tipoMetodologia = dat.TipoMetodologia; 
+        this.tipoMetodologia = dat.tipoMetodologia; 
         this.usuario.tipoMetodologia = this.tipoMetodologia.id;  
-        */
 
         this.usuario.senha = dat.senha;   
   })  

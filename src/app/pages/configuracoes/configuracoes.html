@@ -9,7 +9,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
   <h4>Agendamento da notificação programado para todo dia as {{hora}} horas. Caso deseje mudar selecione a hora abaixo.</h4>
 
@@ -18,10 +18,7 @@
       <ion-input type="text" [(ngModel)]="hora"></ion-input>
   </ion-item> 
 
-  <button ion-button block (click)="scheduleNotification()">Agendar</button>
-
-  <h4>Agendamento da notificação Instantaneo</h4>
-  <button ion-button block (click)="PraticaNow">Agendar</button>
+  <button ion-button block (click)="scheduleNotificationDay()">Agendar</button>
 
   <ion-list>
     <ion-item *ngFor="let n of scheduled">

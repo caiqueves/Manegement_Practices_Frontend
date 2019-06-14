@@ -28,8 +28,7 @@ export class ConfiguracoesPage {
     public praticaService: PraticaService
     ) 
     {
-      
-      var horaRegistrada = localStorage.getItem('horaRegistrada');
+      var horaRegistrada = localStorage.getItem('horaNotificacao');
 
       if (horaRegistrada == null) {
           this.hora = "10:00"
@@ -50,61 +49,47 @@ export class ConfiguracoesPage {
         });
       }); 
     }
-  
 
-    scheduleNotification() {
+    scheduleNotificationDay() {
 
-      localStorage.setItem("horaCadastrada",this.hora);
+      let year = new Date().getFullYear();
+      let month = new Date().getMonth();
+      let day = new Date().getDate();
+      let metodologia;
 
+      this.horas    = this.hora.toString().substr(0,2);
+      this.minutos  = this.hora.toString().substr(3,2);
+      
+      let time1 = new Date(year, month, day, this.horas, this.minutos ,0, 0);
+      
       this.obterDadosPratica();
 
-      this.horas = this.hora.toString().substr(0,2);
-      this.minutos = this.hora.toString().substr(3,2);
-     
+      if (this.pratica.id == 1){
+        metodologia = "TRADICIONAL";
+      }else if (this.pratica.id == 2){
+        metodologia = "ÁGIL";
+      }else if (this.pratica.id == 3){
+        metodologia = "3.0";
+      }
+
       this.localNotifications.schedule({
         id: 1,
-        title: 'Atenção',
-        text: 'Boas Práticas de Gestão',
-        data: { mydata: 'Etapa: '+ this.pratica.etapa + ',\n Problema: '+ this.pratica.problema +',\n Solução: '+this.pratica.solucao},
-        trigger: { every: { hour: this.horas, minute: this.minutos}},
-
-      });
-       
-       const toast = this.toastCtrl.create({
-         message: "Agendamento da notificação efetuado !",
-         duration: 3000
-       });
-       toast.present();
-       
+        title: 'Boas Práticas de Gestão - '+metodologia,
+        text: 'Etapa: '+ this.pratica.etapa + 'Problema: '+this.pratica.problema +'Solução: '+this.pratica.solucao,
+        data: { mydata: 'Etapa: '+ this.pratica.etapa + 'Problema: '+ this.pratica.problema +'Solução: '+this.pratica.solucao},
+        trigger: {firstAt: new Date(time1)},
+        every: "day"
+      });        
       
-      // Works as well!
-      // this.localNotifications.schedule({
-      //   id: 1,
-      //   title: 'Attention',
-      //   text: 'Simons Notification',
-      //   data: { mydata: 'My hidden message this is' },
-      //   trigger: { at: new Date(new Date().getTime() + 5 * 1000) }
-      // });
-    }
-    
-    PraticaNow(){
-      this.localNotifications.schedule({
-        id: 1,
-        title: 'Atenção',
-        text: 'Boas Práticas de Gestão',
-        data: { mydata: 'Etapa: '+ this.pratica.etapa + ',\n Problema: '+ this.pratica.problema +',\n Solução: '+this.pratica.solucao},
-        trigger: { every: { hour: 1, minute: 10}},
+      localStorage.setItem("horaNotificacao",this.hora);
 
+      const toast = this.toastCtrl.create({
+        message: "Agendamento da notificação efetuado !",
+        duration: 3000
       });
-       
-       const toast = this.toastCtrl.create({
-         message: "Agendamento da notificação Instantaneo !",
-         duration: 3000
-       });
-       toast.present();
+      toast.present();              
     }
-   
-    
+
     obterDadosPratica(){
       this.praticaService.buscarPraticaUsuario(localStorage.getItem('IdUsuario')).subscribe ( 
       retorno => {
