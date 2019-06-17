@@ -5,8 +5,9 @@ import { CadastrarUsuarioPage } from '../cadastrar-usuario/cadastrar-usuario';
 import { Usuario } from '../../models/usuario';
 import { ConfiguracaoService } from '../../service/configuracaoService/configuracaoService';
 import { SegurancaService } from '../../service/segurancaService/segurancaService';
-import { PerfilPage } from '../perfil/perfil';
 import { UsuarioService } from '../../service/usuarioService/usuarioService';
+import { LoadingController } from 'ionic-angular';
+import { PerfilPage } from '../perfil/perfil';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,7 @@ export class LoginPage {
 
   usuario = {} as Usuario;
   profileImage;
-
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -26,7 +27,8 @@ export class LoginPage {
     public toastCtrl: ToastController,
     public configuracacaoService: ConfiguracaoService,
     public segurancaservice: SegurancaService,
-    public usuarioservice: UsuarioService
+    public usuarioservice: UsuarioService,
+    public loadingController: LoadingController
     ) 
     {
      
@@ -35,8 +37,17 @@ export class LoginPage {
 
   login(usuario: Usuario) {
     
+    let loading = this.loadingController.create({ content: "Carregando" });
+
+    loading.present();
+
+    setInterval(() => {
+    loading.dismissAll();
+    }, 2000);
+    
+
     if (usuario.email != null && usuario.senha != null) {
-      
+  
       this.segurancaservice.login(usuario.email, usuario.senha).subscribe(
       response =>  {
   
@@ -50,7 +61,6 @@ export class LoginPage {
                        }
         );
 
-
         this.navCtrl.setRoot(PerfilPage);
         
         const toast = this.toastCtrl.create({
@@ -62,7 +72,7 @@ export class LoginPage {
       }, error => {
            const toast = this.toastCtrl.create
            ({
-            message: "Não foi possível efetuar o login.Por favor verifique seu e-mail e senha.",
+            message: "Não foi possível efetuar o login. Por favor verifique seu e-mail e senha.",
             duration: 3000
           });
           toast.present()

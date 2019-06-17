@@ -5,4 +5,6 @@ export interface Pratica {
     problema : string,
     solucao : string,
     fonte : string
+    //tipo_metodologia_id : number
+   
 }

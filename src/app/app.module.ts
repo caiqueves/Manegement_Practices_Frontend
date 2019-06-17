@@ -25,6 +25,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
 import { AuthInterceptor } from './pages/login/auth.interceptor';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+ 
 
 @NgModule({
   declarations: [

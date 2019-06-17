@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { UsuarioService } from '../../service/usuarioService/usuarioService';
@@ -9,7 +9,6 @@ import { RetornoSucesso } from '../../models/retornoSucesso';
 import { RetornoError } from '../../models/retornoError';
 import { TipoMetodologia } from '../../models/tipoMetodologia';
 import { Usuario } from '../../models/usuario';
-
 
 
 @IonicPage()
@@ -33,8 +32,9 @@ export class CadastrarUsuarioPage {
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
     private usuarioService: UsuarioService,
-    //private configuracaoService: ConfiguracaoService,
-    private tipoMetodologiaService: TipoMetodologiaService
+    private tipoMetodologiaService: TipoMetodologiaService,
+    public loadingController: LoadingController
+    
     ) {
   
       this.profileImage = 'assets/imgs/img_logo_header.gif';
@@ -56,13 +56,22 @@ export class CadastrarUsuarioPage {
           });
           toast.present();
         });
-  }
+      }
 
   Cadastrar(usuario : Usuario) {
-    if (usuario.nome != null && usuario.email != null && usuario.tipoFuncao != null && usuario.senha != null && usuario.tipoMetodologia != null) {
+
+    let loading = this.loadingController.create({ content: "Carregando" });
+
+    loading.present();
+
+    setInterval(() => {
+    loading.dismissAll();
+    }, 1500);
+
+    if (usuario.nome != null && usuario.email != null && usuario.tipoFuncao != null && usuario.senha != null && usuario.tipoMetodologia != null) 
+    {
       this.usuarioService.salvar(usuario.nome,usuario.email,usuario.tipoFuncao,usuario.senha,usuario.tipoMetodologia)
-       .subscribe (
-         retorno => {
+       .subscribe ( retorno => {
            this.retornoS = retorno;
 
            const toast = this.toastCtrl.create({
@@ -72,9 +81,8 @@ export class CadastrarUsuarioPage {
           toast.present();
 
            this.navCtrl.push(LoginPage);
-         },
-         retorno => {
-            this.retornoE = retorno.error;
+         },retornoE => {
+            this.retornoE = retornoE.error;
           
             const toast = this.toastCtrl.create({
               message: this.retornoE.message.toString(),
@@ -88,7 +96,7 @@ export class CadastrarUsuarioPage {
           duration: 3000
         });
         toast.present();
-    }
+      }
   }
 }
 

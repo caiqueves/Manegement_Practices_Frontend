@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -8,17 +7,20 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
 
-  <h4>Agendamento da notificação programado para todo dia as {{hora}} horas. Caso deseje mudar selecione a hora abaixo.</h4>
+  <h4>Agendamento da notificação programado para todo dia as {{hora}} horas.</h4>
+
+  <h2>Caso deseje mudar selecione a hora abaixo no seguinte formato HH:mm..</h2>
 
   <ion-item>
       <ion-label>Horário: </ion-label> 
-      <ion-input type="text" [(ngModel)]="hora"></ion-input>
+      <ion-input type="text" [(ngModel)]="hora" ></ion-input>
   </ion-item> 
 
   <button ion-button block (click)="scheduleNotificationDay()">Agendar</button>
+
+  <!--<button ion-button block (click)="getAll()">Mostrar Todas</button>
 
   <ion-list>
     <ion-item *ngFor="let n of scheduled">
@@ -27,6 +29,6 @@
         <p>Trigger: {{ n.trigger | json }} </p>
       </ion-label>
     </ion-item>
-  </ion-list>
+  </ion-list>-->
 
 </ion-content>
