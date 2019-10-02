@@ -7,7 +7,7 @@ import { ConfiguracaoService } from '../../service/configuracaoService/configura
 import { SegurancaService } from '../../service/segurancaService/segurancaService';
 import { UsuarioService } from '../../service/usuarioService/usuarioService';
 import { LoadingController } from 'ionic-angular';
-import { PerfilPage } from '../perfil/perfil';
+import { ConfiguracoesPage } from '../configuracoes/configuracoes';
 
 @IonicPage()
 @Component({
@@ -56,12 +56,13 @@ export class LoginPage {
         this.usuarioservice.selecionarEmail(usuario.email)
         .subscribe(
                 dat => { 
-                        localStorage.removeItem('IdUsuario');
                         localStorage.setItem("IdUsuario",dat.id);
                        }
         );
 
-        this.navCtrl.setRoot(PerfilPage);
+        localStorage.setItem("UsuarioLogado","1");
+
+        this.navCtrl.setRoot(ConfiguracoesPage);
         
         const toast = this.toastCtrl.create({
           message: 'Seja Bem Vindo ao PUSH PROJ',

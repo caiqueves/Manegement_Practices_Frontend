@@ -6,7 +6,6 @@
 
 </ion-header>
 
-
 <ion-content>
 
   <ion-avatar>
@@ -15,10 +14,9 @@
 
   <ion-item>
     <ion-label string>Email</ion-label>
-    <ion-input type="text" [(ngModel)]="usuario.email"></ion-input>
+    <ion-input type="email" [(ngModel)]="usuario.email"></ion-input>
   </ion-item>
-
-  <button ion-button block (click)="esqueciSenha(usuario)" color="primary">Reiniciar Senha </button>
+  <br>
+  <button ion-button block (click)="esqueciSenha(usuario)" color="success">Recuperar Senha </button>
   
-
 </ion-content>

@@ -34,7 +34,7 @@ export class ConfiguracoesPage {
       var horaRegistrada = localStorage.getItem('horaNotificacao');
 
       if (horaRegistrada == null) {
-          this.hora = "10:00"
+          this.hora = "10:00";
       }
       else {
         this.hora = horaRegistrada;
@@ -49,7 +49,7 @@ export class ConfiguracoesPage {
         */
    
         this.localNotifications.on('trigger').subscribe(res => {
-          let msg = res.data ? res.data.mydata : '';
+          let msg = res.data.mydata;
           this.presentAlert(res.title, res.text, msg);
         });
       }); 
@@ -84,10 +84,10 @@ export class ConfiguracoesPage {
 
         this.localNotifications.schedule({
           id: 1,
-          title: 'Boas Práticas de Gestão',
-          text: 'Etapa: '+ this.pratica.etapa + ' - Problema: '+ this.pratica.problema +' - Solução: '+ this.pratica.solucao,
-          data: { mydata: 'Etapa: '+ this.pratica.etapa + ' - Problema: '+ this.pratica.problema +' - Solução: '+ this.pratica.solucao},   
-          trigger: { count : 1, every: { hour: this.horas,  minute: this.minutos } },
+          title:'Boas Práticas de Gestão',
+          text: 'Etapa: '+ this.pratica.etapa, 
+          data: { mydata: '\n'+'Problema: '+ this.pratica.problema +'\n'+'Solução: '+ this.pratica.solucao},   
+          trigger: {count:1, every:{hour:this.horas,minute: this.minutos}}
         });        
         
         localStorage.setItem("horaNotificacao",this.hora);
@@ -110,7 +110,7 @@ export class ConfiguracoesPage {
     obterDadosPratica(){
       this.praticaService.buscarPraticaUsuario(localStorage.getItem('IdUsuario')).subscribe ( 
       retorno => {
-        
+
       this.pratica = retorno;
       /*
        this.pratica.id = retorno.id;

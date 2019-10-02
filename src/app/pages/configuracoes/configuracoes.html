@@ -14,11 +14,11 @@
   <h2>Caso deseje mudar selecione a hora abaixo no seguinte formato HH:mm..</h2>
 
   <ion-item>
-      <ion-label>Horário: </ion-label> 
-      <ion-input type="text" [(ngModel)]="hora" ></ion-input>
-  </ion-item> 
+    <ion-label>Date</ion-label>
+    <ion-datetime displayFormat="HH:mm" [(ngModel)]="hora"></ion-datetime>
+  </ion-item>
 
-  <button ion-button block (click)="scheduleNotificationDay()">Agendar</button>
+  <button ion-button block (click)="scheduleNotificationDay()">Agendar Notificação</button>
 
   <!--<button ion-button block (click)="getAll()">Mostrar Todas</button>
 

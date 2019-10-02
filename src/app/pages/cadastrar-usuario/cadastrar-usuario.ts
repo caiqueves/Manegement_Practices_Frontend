@@ -27,6 +27,8 @@ export class CadastrarUsuarioPage {
   retornoS: RetornoSucesso;
   retornoE: RetornoError;
 
+  hora: any;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
@@ -60,6 +62,7 @@ export class CadastrarUsuarioPage {
 
   Cadastrar(usuario : Usuario) {
 
+    console.log(this.hora);
     let loading = this.loadingController.create({ content: "Carregando" });
 
     loading.present();

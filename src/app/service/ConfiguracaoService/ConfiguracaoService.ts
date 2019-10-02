@@ -48,4 +48,13 @@ export class ConfiguracaoService {
       
       localStorage.setItem(config_key_name, JSON.stringify(config));
   } 
+
+  getMostrarSlideShow(){
+   return localStorage.getItem("mostrarSlideShow");
+  }
+
+  setMostrarSlideShow(){
+    localStorage.setItem("mostrarSlideShow","1")
+   }
+
 }

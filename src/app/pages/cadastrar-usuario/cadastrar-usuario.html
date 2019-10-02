@@ -19,7 +19,7 @@
     
     <ion-item>
       <ion-label floating >Email</ion-label>
-      <ion-input  type="text" [(ngModel)]="usuario.email"></ion-input>
+      <ion-input  type="email" [(ngModel)]="usuario.email"></ion-input>
     </ion-item>
 
 
@@ -37,15 +37,14 @@
         </ion-select>
     </ion-item>
 
-
     <ion-item>
       <ion-label floating>Senha</ion-label>
       <ion-input type="password" [(ngModel)]="usuario.senha"></ion-input>
     </ion-item>
 
+    <br>
   
-  
-    <button ion-button block (click)="Cadastrar(usuario)" color="primary">Cadastrar </button>
+    <button ion-button block (click)="Cadastrar(usuario)" color="success">Cadastrar </button>
 
 </ion-content>
 

@@ -11,7 +11,7 @@
 <ion-content>
   
     <ion-avatar>
-      <img class="circle" [src]="profileImage" >
+      <img class="circle" height="40" width="40" [src]="profileImage" >
     </ion-avatar>
   
     <ion-item>
@@ -21,7 +21,7 @@
 
     <ion-item>
        <ion-label floating>E-Mail </ion-label>
-       <ion-input type="text" [(ngModel)]="usuario.email"></ion-input>  
+       <ion-input type="email" [(ngModel)]="usuario.email"></ion-input>  
     </ion-item>
 
     <ion-item>
@@ -31,6 +31,7 @@
       </ion-select>
     </ion-item>
 
+
     <ion-item>
       <ion-label floating>Tipo Metodologia </ion-label>
       <ion-select  [(ngModel)]="usuario.tipoMetodologia" okText="Ok" cancelText="Cancelar">
@@ -38,15 +39,18 @@
       </ion-select>
     </ion-item>
     
+    
     <ion-item>
       <ion-label floating>Senha</ion-label>
       <ion-input type="password" [(ngModel)]="usuario.senha"></ion-input>
     </ion-item>
-    
-    <button ion-button block (click)="Editar(usuario)">Editar</button>
+
+    <ion-item>
+     <button ion-button block (click)="Editar(usuario)" color="success">Salvar</button>
+    </ion-item>
 
     <ion-item>
         <h5>Caso deseje excluir a sua conta, clique abaixo: </h5>
-        <a (click)="Excluir()">Excluir Conta</a>
+        <button ion-button block (click)="Excluir()" color="danger">Excluir Conta</button>
     </ion-item>
 </ion-content>

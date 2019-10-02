@@ -124,10 +124,12 @@ export class PerfilPage {
        });
        toast.present();
 
-       this.navCtrl.setRoot(LoginPage);
        localStorage.removeItem("X-PUSH-AUTH")
        localStorage.removeItem('IdUsuario');
- 
+       localStorage.setItem("UsuarioLogado","0");
+
+       this.navCtrl.setRoot(LoginPage);
+
       }, error => {
        const toast = this.toastCtrl.create({
          message: error.error.message,

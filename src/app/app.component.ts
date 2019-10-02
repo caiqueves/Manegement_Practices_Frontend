@@ -35,12 +35,22 @@ export class MyApp {
                 ];
                 
                 platform.ready().then(() => {
-                      let config =  configuracacaoService.getConfigData();
-                      if(config == null){
+
+                      if(configuracacaoService.getMostrarSlideShow() == "")
+                      {
                           this.rootPage = IntroducaoPage;
-                          configuracacaoService.setConfigData(false);
-                      }else{
-                          this.rootPage = LoginPage;
+                          configuracacaoService.setMostrarSlideShow();
+                      }
+                      else
+                      {
+                           if(localStorage.getItem('UsuarioLogado') == "1") 
+                           {
+                            this.rootPage = ConfiguracoesPage;
+                           } 
+                           else 
+                           {
+                            this.rootPage = LoginPage;
+                           }
                       }
                       
                       statusBar.styleDefault();
@@ -54,9 +64,10 @@ export class MyApp {
   }
 
   logout() {
+    localStorage.removeItem("X-PUSH-AUTH")
+    localStorage.removeItem('IdUsuario');
+    localStorage.setItem("UsuarioLogado","0");
     this.nav.setRoot(LoginPage);
   }
-
-
 }
 
